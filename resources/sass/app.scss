@@ -1,0 +1,59 @@
+@import url("//fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
+
+$background: #161616;
+$page-bg-color: $background !default;
+$base-color: #ecf0f1;
+$font-family: "Lato", sans-serif;
+
+@import 'flatui/config';
+@import 'flatui/mixins';
+@import 'flatui/modules/btn';
+
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+
+// Custom code goes here..
+
+// Examples of using the icon mixin:
+// @include icon('user');
+
+@import "deck";
+@import "mixer";
+@import "browser";
+@import "controlbar";
+
+html, body {
+  font-family: $font-family;
+  color: $base-color;
+}
+
+.flex-spacer {
+  -webkit-box-flex: 1;
+}
+
+.x-panel {
+  background-color: #34495e !important;
+}
+
+//.spin {
+//  -webkit-animation-name: spin;
+//  -webkit-animation-duration: 2s;
+//  -webkit-animation-iteration-count: infinite;
+//  -webkit-animation-timing-function: linear;
+//  &.paused {
+//    -webkit-animation-play-state: paused;
+//  }
+//}
+//
+//@-webkit-keyframes spin {
+//  0% {
+//    @include rotate(0deg);
+//  }
+//  100% {
+//    @include rotate(359deg);
+//  }
+//}

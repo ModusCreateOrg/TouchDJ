@@ -1,0 +1,60 @@
+{
+    "1"  : {
+        "event" : "setVolume",
+        "deck"  : "A"
+    },
+    "2"  : {
+        "event" : "setVolume",
+        "deck"  : "B"
+    },
+    "12" : {
+        "event" : "eqChange",
+        "param" : "high",
+        "deck"  : "A"
+    },
+    "13" : {
+        "event" : "eqChange",
+        "param" : "mid",
+        "deck"  : "A"
+    },
+    "14" : {
+        "event" : "eqChange",
+        "param" : "low",
+        "deck"  : "A"
+    },
+    "15" : {
+        "event" : "eqChange",
+        "param" : "high",
+        "deck"  : "B"
+    },
+    "16" : {
+        "event" : "eqChange",
+        "param" : "mid",
+        "deck"  : "B"
+    },
+    "17" : {
+        "event" : "eqChange",
+        "param" : "low",
+        "deck"  : "B"
+    },
+    "18" : {
+        "event" : "playPause",
+        "deck"  : "A"
+    },
+    "19" : {
+        "event" : "cue",
+        "deck"  : "A"
+    },
+    "20" : {
+        "event" : "playPause",
+        "deck"  : "B"
+    },
+    "21" : {
+        "event" : "cue",
+        "deck"  : "B"
+    },
+    "22" : {
+        "event" : "xfade",
+        "deck"  : "AB"
+    }
+}

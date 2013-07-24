@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>MDJ</title>
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic" rel="stylesheet" type="text/css">
+    <link href="lib/dragdealer/dragdealer.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body {
+            height: 100%;
+            background-color: #161616
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            background-image: url("resources/loading.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            -webkit-animation-name: spin;
+            -webkit-animation-duration: 2s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+        }
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            #apploadingindicator {
+                background-image: url("resources/loading@2x.png");
+            }
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(359deg);
+            }
+        }
+
+
+
+    </style>
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script id="microloader" type="text/javascript" src="touch/microloader/development.js"></script>
+
+    <script type="text/javascript" src="lib/wavesurfer/wavesurfer.js"></script>
+    <script type="text/javascript" src="lib/wavesurfer/webaudio.js"></script>
+    <script type="text/javascript" src="lib/wavesurfer/drawer.js"></script>
+
+    <script type="text/javascript" src="lib/dragdealer/dragdealer.js"></script>
+
+    <script type="text/javascript" src="lib/id3/dist/id3-minimized.js"></script>
+
+    <script type="text/javascript" src="socket.io/socket.io.js"></script>
+
+
+</head>
+<body>
+    <div id="appLoadingIndicator">
+    </div>
+</body>
+</html>

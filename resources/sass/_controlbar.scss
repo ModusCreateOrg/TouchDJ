@@ -1,0 +1,27 @@
+.control-bar {
+  display: -webkit-box;
+  -webkit-box-align: stretch;
+  text-align: center;
+  .btn {
+    width: 200px;
+    padding: 5px;
+    z-index: 10001;
+  }
+}
+
+.logo {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  height: 60px;
+  margin-left: -30px;
+  width: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../logo.png");
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background-image: url("../logo@2x.png");
+  }
+}

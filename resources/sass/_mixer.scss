@@ -1,0 +1,105 @@
+.mixer-cmp {
+  .x-inner {
+    background: $background !important;
+  }
+}
+.mixer {
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-align: stretch;
+  -webkit-box-pack: stretch;
+  .deck {
+    -webkit-box-flex: 1;
+    display: -webkit-box;
+    margin: 10px 0px;
+
+    &.A {
+      -webkit-box-pack: end;
+      margin-right: 5px;
+    }
+    &.B {
+      margin-left: 5px;
+    }
+
+    .deck-transport {
+      .btn {
+        width: 50px;
+        margin: 10px;
+        text-align: center;
+      }
+    }
+    .eq-outer {
+      display: -webkit-box;
+      height: 200px;
+      .eq {
+        height: auto;
+        width: 75px;
+        background: $base;
+        position: relative;
+        overflow: hidden;
+        margin-left: 10px;
+        margin-right: 10px;
+        .eq-bar {
+          height: 20px;
+          width: 75px;
+          background-color: #2980b9;
+          border: 1px solid #3498db;
+          top: 0;
+        }
+      }
+    }
+    .volume-outer {
+      display: -webkit-box;
+      height: 400px;
+      .volume {
+        height: auto;
+        width: 75px;
+        background: $base;
+        position: relative;
+        overflow: hidden;
+        margin-left: 10px;
+        margin-right: 10px;
+        .volume-bar {
+          height: 20px;
+          width: 75px;
+          background-color: #2980b9;
+          border: 1px solid #3498db;
+          top: 0;
+        }
+      }
+    }
+    .volume-meter {
+      .meter {
+        background: $background;
+      }
+      background: #27ae60;
+      width: 30px;
+      height: 400px;
+    }
+  }
+
+}
+.mixer-footer {
+  margin-top: 20px;
+  height: 100px;
+  .xfader-outer {
+    width: 300px;
+    height: 100px;
+    margin-left:auto;
+    margin-right: auto;
+    .xfader {
+      background: $base;
+      height: 50px;
+      position: relative;
+      overflow: hidden;
+      .xfader-bar {
+        height: 100px;
+        width: 20px;
+        background-color: #2980b9;
+        border: 1px solid #3498db;
+        top: 0;
+      }
+    }
+
+  }
+}
