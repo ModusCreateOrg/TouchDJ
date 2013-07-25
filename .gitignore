@@ -1,4 +1,8 @@
 *DS_Store
 .idea
 *.iml
-resources/sass/.sass-cache/
+/resources/sass/.sass-cache/
+/server/node_modules
+/tracks/*.mp3
+npm-debug.log
+nohup.out

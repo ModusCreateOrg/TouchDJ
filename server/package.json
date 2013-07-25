@@ -1,12 +1,16 @@
 {
     "name"         : "modusdj-server",
     "private"      : "true",
-    "version"      : "0.1.0",
+    "version"      : "0.1.1",
     "dependencies" : {
-        "express"       : "*",
-        "socket.io"     : "*",
-        "midi"          : "*",
-        "musicmetadata" : "*",
-        "async"         : "*"
+        "express"       : "3.3.1",
+        "socket.io"     : "0.9.16",
+        "node-gyp"      : "0.9.6",
+        "midi"          : "0.7.0",
+        "musicmetadata" : "0.2.3",
+        "async"         : "0.2.9"
+    },
+    "engines": {
+        "node": ">= 0.8.0"
     }
 }
