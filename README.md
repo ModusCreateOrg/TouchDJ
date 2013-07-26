@@ -24,13 +24,14 @@ Features:
 
 ## Ubuntu
 
-This set of instructions adapted from https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager will install NodeJS on an Ubuntu system, along with the required librtmidi library:
+This set of instructions adapted from https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager will install the latest stable NodeJS on an Ubuntu system, along with the required librtmidi library:
 
     sudo apt-get update
     sudo apt-get install librtmidi-dev python-software-properties python g++ make
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
     sudo apt-get install nodejs
+    sudo ln -s /usr/bin/nodejs /usr/local/bin/node
 
 
 > MP3 Files need to be added to /tracks directory
