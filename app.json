@@ -130,7 +130,9 @@
         "resources/loading@2x.png",
         "resources/logo.png",
         "resources/logo@2x.png",
-        "data"
+        "data",
+        "server",
+        "tracks"
     ],
 
     /**
