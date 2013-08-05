@@ -108,8 +108,7 @@ $button-border-radius: 5px;
     }
 }
 
-.x-toolbar-dark,
-.x-toolbar-neutral {
+.x-toolbar-dark {
     .x-button,
     .x-button-pressing {
         border-color: #060606;
@@ -129,6 +128,21 @@ $button-border-radius: 5px;
 
     .x-button-pressed,
     .x-button-pressing {
+        &:before {
+            @include background(linear-gradient(color-stops(#235F71, #0D6681)));
+            @include box-shadow(inset 0 -1px 0 0 #176982);
+        }
+    }
+}
+
+.x-toolbar-plain,
+.x-toolbar-neutral {
+    .x-button-pressed,
+    .x-button-pressing {
+        .x-button-label {
+            color: #fff;
+        }
+
         &:before {
             @include background(linear-gradient(color-stops(#235F71, #0D6681)));
             @include box-shadow(inset 0 -1px 0 0 #176982);
@@ -187,6 +201,7 @@ $button-border-radius: 5px;
 
 .x-toolbar .x-button-back {
     padding-right: 15px;
+    
     &:before {
         @include rotate(6deg);
         right: 5px;
@@ -200,6 +215,7 @@ $button-border-radius: 5px;
 
 .x-toolbar .x-button-forward {
     padding-left: 15px;
+
     &:before {
         @include rotate(-6deg);
         left: 5px;
@@ -208,6 +224,12 @@ $button-border-radius: 5px;
         border-color: $base-color;
         border-width: 0 0 0 1px;
         @include border-radius(0);
+    }
+
+    .x-button-icon {
+        &:before {
+            content: '>';
+        }
     }
 }
 
@@ -311,11 +333,53 @@ $button-border-radius: 5px;
     }
 }
 
-.x-toolbar-dark,
-.x-toolbar-neutral {
+.x-toolbar-dark {
     .x-segmentedbutton {
         border-color: #060606;
         @include background(linear-gradient(color-stops(#010101, #060606)));
         @include box-shadow(0 0 0 1px #393939);
+    }
+}
+
+.x-toolbar-plain,
+.x-toolbar-neutral,
+.x-toolbar-light {
+    .x-segmentedbutton {
+        .x-button-pressing,
+        .x-button-pressed {
+            background-image: none;
+        }
+    }
+}
+
+.x-toolbar-light {
+    .x-segmentedbutton {
+        border-color: #0A5A88;
+        @include background(linear-gradient(color-stops(#05608f, #04557f)));
+        @include box-shadow(none);
+    }
+}
+
+.x-toolbar-plain,
+.x-toolbar-neutral {
+    .x-segmentedbutton {
+        border-color: #CECACE;
+        @include background(linear-gradient(color-stops(#c6c3c6, #ccc)));
+        @include box-shadow(none);
+
+        .x-button {
+            background-image: none;
+        }
+    }
+
+    .x-button-icon:before {
+        color: #000;
+    }
+
+    .x-button-pressing,
+    .x-button-pressed {
+        .x-button-icon:before {
+            color: #fff;
+        }
     }
 }

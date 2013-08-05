@@ -398,7 +398,7 @@ Ext.define('Ext.field.Text', {
 
     // @private
     doClearIconTap: function(me, e) {
-        me.setValue(this.originalValue);
+        me.setValue('');
 
         //sync with the input
         me.getValue();

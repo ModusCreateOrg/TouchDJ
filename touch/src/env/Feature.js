@@ -77,6 +77,16 @@ Ext.define('Ext.env.Feature', {
         return false;
     },
 
+    isStyleSupportedWithoutPrefix: function(name, tag) {
+        var elementStyle = this.getTestElement(tag).style;
+
+        if (typeof elementStyle[name] !== 'undefined') {
+            return true;
+        }
+
+        return false;
+    },
+
     isEventSupported: function(name, tag) {
         if (tag === undefined) {
             tag = window;
@@ -214,7 +224,7 @@ Ext.define('Ext.env.Feature', {
         },
 
         Touch: function() {
-            return this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/) && !Ext.os.is.BlackBerry6);
+            return Ext.browser.is.Ripple || (this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/) && !Ext.os.is.BlackBerry6));
         },
 
         Pointer: function() {
@@ -260,6 +270,10 @@ Ext.define('Ext.env.Feature', {
 
         CssTransforms: function() {
             return this.isStyleSupported('transform');
+        },
+
+        CssTransformNoPrefix: function() {
+            return this.isStyleSupportedWithoutPrefix('transform');
         },
 
         Css3dTransforms: function() {

@@ -185,6 +185,8 @@ Ext.define('Ext.field.Select', {
             masktap: 'onMaskTap'
         });
 
+        component.doMaskTap = Ext.emptyFn;
+
         if (Ext.browser.is.AndroidStock2) {
             component.input.dom.disabled = true;
         }

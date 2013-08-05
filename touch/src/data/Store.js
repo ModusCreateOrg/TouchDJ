@@ -475,6 +475,7 @@ Ext.define('Ext.data.Store', {
 
         /**
          * @cfg {String} model
+         * Returns Ext.data.Model and not a String.
          * Name of the {@link Ext.data.Model Model} associated with this store.
          * The string is used as an argument for {@link Ext.ModelManager#getModel}.
          * @accessor
@@ -490,7 +491,8 @@ Ext.define('Ext.data.Store', {
 
         /**
          * @cfg {Object[]} fields
-         * This may be used in place of specifying a {@link #model} configuration. The fields should be a
+         * Returns Ext.util.Collection not just an Object.
+         * Use in place of specifying a {@link #model} configuration. The fields should be a
          * set of {@link Ext.data.Field} configuration objects. The store will automatically create a {@link Ext.data.Model}
          * with these fields. In general this configuration option should be avoided, it exists for the purposes of
          * backwards compatibility. For anything more complicated, such as specifying a particular id property or
@@ -545,7 +547,7 @@ Ext.define('Ext.data.Store', {
         sorters: null,
 
         /**
-         * @cfg {Object[]} grouper
+         * @cfg {Object} grouper
          * A configuration object for this Store's {@link Ext.util.Grouper grouper}.
          *
          * For example, to group a store's items by the first letter of the last name:
@@ -741,10 +743,11 @@ Ext.define('Ext.data.Store', {
             }
 
             if (fields) {
-                model = new Ext.Class({
+                model = Ext.define('Ext.data.Store.ImplicitModel-' + (this.getStoreId() || Ext.id()), {
                     extend: 'Ext.data.Model',
                     config: {
                         fields: fields,
+                        useCache: false,
                         proxy: this.getProxy()
                     }
                 });
@@ -928,7 +931,7 @@ Ext.define('Ext.data.Store', {
             };
         }
 
-        grouper = Ext.factory(grouper, Ext.util.Grouper, this.getGrouper());
+        grouper = Ext.factory(grouper, Ext.util.Grouper);
         return grouper;
     },
 
@@ -951,6 +954,9 @@ Ext.define('Ext.data.Store', {
                     }
                 });
             }
+        }
+        if (oldGrouper) {
+            this.fireEvent('refresh', this, data);
         }
     },
 
@@ -1117,7 +1123,7 @@ Ext.define('Ext.data.Store', {
             removed = [],
             isPhantom,
             items = me.data.items,
-            record, index, j;
+            record, index;
 
         for (; i < ln; i++) {
             record = records[i];
@@ -1275,7 +1281,8 @@ Ext.define('Ext.data.Store', {
     },
 
     /**
-     * Returns a range of Records between specified indices.
+     * Returns a range of Records between specified indices. Note that if the store is filtered, only filtered results
+     * are returned.
      * @param {Number} [startIndex=0] (optional) The starting index.
      * @param {Number} [endIndex=-1] (optional) The ending index (defaults to the last Record in the Store).
      * @return {Ext.data.Model[]} An array of Records.
@@ -1573,7 +1580,7 @@ Ext.define('Ext.data.Store', {
                     anyMatch     : anyMatch,
                     caseSensitive: caseSensitive,
                     id           : property
-                }
+                };
             }
         }
 
@@ -1603,7 +1610,7 @@ Ext.define('Ext.data.Store', {
 
         data.filter({
             filterFn: function(record) {
-                return fn.call(scope || me, record, record.getId())
+                return fn.call(scope || me, record, record.getId());
             }
         });
 
@@ -2295,11 +2302,15 @@ Ext.define('Ext.data.Store', {
         this.clearData();
         var proxy = this.getProxy();
         if (proxy) {
-            // TODO: Use un() instead of clearListeners() when TOUCH-2723 is fixed.
-//          proxy.un('metachange', 'onMetaChange', this);
-            proxy.clearListeners();
+            proxy.onDestroy();
         }
         Ext.data.StoreManager.unregister(this);
+
+        if (this.implicitModel && this.getModel()) {
+          delete Ext.data.ModelManager.types[this.getModel().getName()];
+        }
+        Ext.destroy(this.data);
+
         this.callParent(arguments);
     }
 

@@ -112,6 +112,10 @@ Ext.define('Ext.chart.axis.Axis', {
 
         /**
          * @cfg {Function} renderer Allows direct customisation of rendered axis sprites.
+         * @param {String} label The label.
+         * @param {Object|Ext.chart.axis.layout.Layout} layout The layout configuration used by the axis.
+         * @param {String} lastLabel The last label.
+         * @return {String} The label to display.
          */
         renderer: null,
 

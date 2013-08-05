@@ -138,15 +138,18 @@ Ext.define('Ext.field.Checkbox', {
 
     // @private
     initialize: function() {
-        var me = this;
+        var me = this,
+            component = me.getComponent();
 
         me.callParent();
 
-        me.getComponent().on({
+        component.on({
             scope: me,
             order: 'before',
             masktap: 'onMaskTap'
         });
+
+        component.doMaskTap = Ext.emptyFn;
 
         me.label.on({
             scope: me,

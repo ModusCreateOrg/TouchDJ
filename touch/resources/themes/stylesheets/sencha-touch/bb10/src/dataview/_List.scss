@@ -65,3 +65,11 @@
 .x-indexbar-pressed {
     background: rgba(150,150,150,.2);
 }
+
+.x-list-item-odd {
+    &.x-list-item-tpl,
+    .x-dock-horizontal {
+        background-color: darken(#fff, 5%);
+        border-bottom: 1px solid darken(#fff, 5%);
+    }
+}

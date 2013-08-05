@@ -148,12 +148,7 @@ Ext.define('Ext.env.OS', {
                         version = new Ext.Version("2.3");
                     }
                     else if (match1 && match1 == "Silk/") {
-                        if (/Macintosh/i.test(userAgent)) {
-                            version = new Ext.Version("2.3");
-                        }
-                        else {
-                            version = new Ext.Version("4.0");
-                        }
+                        version = new Ext.Version("2.3");
                     }
                     else {
                         version = new Ext.Version(match[match.length - 1]);
@@ -286,7 +281,7 @@ Ext.define('Ext.env.OS', {
             // always set it to false when you are on a desktop
             Ext.browser.is.WebView = false;
         }
-        else if (osEnv.is.iPad || osEnv.is.RIMTablet || osEnv.is.Android3 || (osEnv.is.Android4 && userAgent.search(/mobile/i) == -1)) {
+        else if (osEnv.is.iPad || osEnv.is.RIMTablet || osEnv.is.Android3 || Ext.browser.is.Silk || (osEnv.is.Android4 && userAgent.search(/mobile/i) == -1)) {
             deviceType = 'Tablet';
         }
         else {

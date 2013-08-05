@@ -49,6 +49,10 @@
             "update": "delta"
         },
         {
+            "path" : "lib/id3/dist/id3-minimized.js",
+            "update" : "delta"
+        },
+        {
             "path" : "lib/wavesurfer/wavesurfer.js",
             "update" : "delta"
         },
@@ -63,11 +67,7 @@
         {
             "path" : "lib/dragdealer/dragdealer.js",
             "update" : "delta"
-        },
-        {
-            "path" : "lib/id3/dist/id3-minimized.js",
-            "update" : "delta"
-        },
+        }
     ],
 
     /**

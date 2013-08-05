@@ -32,7 +32,7 @@
  *
  * [getting_started]: #!/guide/getting_started
  */
-Ext.setVersion('touch', '2.2.0');
+Ext.setVersion('touch', '2.2.1');
 
 Ext.apply(Ext, {
     /**
@@ -59,7 +59,7 @@ Ext.apply(Ext, {
     },
 
     /**
-     * Generates unique ids. If the element already has an `id`, it is unchanged.
+     * Generates unique ids. If the element is passes and it already has an `id`, it is unchanged.
      * @param {Mixed} el (optional) The element to generate an id for.
      * @param {String} [prefix=ext-gen] (optional) The `id` prefix.
      * @return {String} The generated `id`.
@@ -72,16 +72,16 @@ Ext.apply(Ext, {
         el = Ext.getDom(el) || {};
 
         if (el === document || el === document.documentElement) {
-            el.id = 'ext-application';
+            el.id = 'ext-app';
         }
         else if (el === document.body) {
-            el.id = 'ext-viewport';
+            el.id = 'ext-body';
         }
         else if (el === window) {
             el.id = 'ext-window';
         }
 
-        el.id = el.id || ((prefix || 'ext-element-') + (++Ext.idSeed));
+        el.id = el.id || ((prefix || 'ext-') + (++Ext.idSeed));
 
         return el.id;
     },

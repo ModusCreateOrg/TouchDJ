@@ -495,8 +495,8 @@ Ext.define('Ext.dom.Element', {
          * {@link Ext.dom.Element#fly}.
          *
          * Use this to make one-time references to DOM elements which are not going to be accessed again either by
-         * application code, or by Ext's classes. If accessing an element which will be processed regularly, then {@link
-         * Ext#get Ext.get} will be more appropriate to take advantage of the caching provided by the {@link Ext.dom.Element}
+         * application code, or by Ext's classes. If accessing an element which will be processed regularly, then {@link Ext#get Ext.get}
+         * will be more appropriate to take advantage of the caching provided by the {@link Ext.dom.Element}
          * class.
          *
          * @param {String/HTMLElement} element The DOM node or `id`.

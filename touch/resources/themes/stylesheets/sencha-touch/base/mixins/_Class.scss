@@ -247,7 +247,7 @@
  * @param {string} $character The character
  * @param {string} $font-family The `font-family` used for this icon. Defaults to the `Pictos` font.
  */
-@mixin icon($name, $character: null, $font-family: null) {
+@mixin icon($name, $character: null, $font-family: 'Pictos') {
     $raw_character: icon-character-for-name($name);
 
     @if $character == null and $raw_character == null {

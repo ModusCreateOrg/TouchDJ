@@ -1,5 +1,39 @@
 /**
- * SQL proxy.
+ * SQL proxy lets you store data in a SQL database.
+ * The Sencha Touch SQL proxy outputs model data into an HTML5
+ * local database using WebSQL. 
+ * 
+ * You can create a Store for the proxy, for example:
+ * 
+ * Ext.require(["Ext.data.proxy.Sql"]);
+ * 
+ * Ext.define("User", {
+ *   extend: "Ext.data.model",
+ *   config: {
+ *     fields: [ "firstName", "lastName" ]
+ *   }  
+ * });
+ * 
+ * Ext.create("Ext.data.Store", {
+ *   model" "User",
+ *   storeId: "Users",
+ *   proxy: {
+ *     type: "sql""
+ *   }
+ * });
+ * 
+ * Ext.getStore("Users").add([{
+ *   firstName: "Polly",
+ *   lastName: "Hedra"
+ * });
+ * 
+ * Ext.getStore("Users").sync();
+ * 
+ * To destroy a table use:
+ * Ext.getStore("Users").getModel().getProxy().dropTable();
+ * 
+ * To recreate a table use:
+ * Ext.data.Store.sync() or Ext.data.Model.save()
  */
 Ext.define('Ext.data.proxy.Sql', {
     alias: 'proxy.sql',

@@ -290,7 +290,14 @@ Ext.define('Ext.dataview.List', {
          */
         useSimpleItems: true,
 
-        scrollable: null
+        scrollable: null,
+
+        /**
+         * @cfg {Boolean} striped
+         * Set this to true if you want the items in the list to be zebra striped, alternating their
+         * background color.
+         */
+        striped: false
     },
 
     platformConfig: [{
@@ -723,7 +730,7 @@ Ext.define('Ext.dataview.List', {
             storeCount = info.store.getCount(),
             itemCls = [],
             headerCls = [],
-            itemRemoveCls = [info.headerCls, info.footerCls, info.firstCls, info.lastCls, info.selectedCls],
+            itemRemoveCls = [info.headerCls, info.footerCls, info.firstCls, info.lastCls, info.selectedCls, info.stripeCls],
             headerRemoveCls = [info.headerCls, info.footerCls, info.firstCls, info.lastCls],
             ln, i, scrollDockItem;
 
@@ -834,7 +841,11 @@ Ext.define('Ext.dataview.List', {
             if (!infinite) {
                 for (i = 0, ln = scrollDockItems.top.length; i < ln; i++) {
                     scrollDockItem = scrollDockItems.top[i];
-                    scrollDockItem.renderElement.insertBefore(item.renderElement);
+                    if (info.grouped) {
+                        scrollDockItem.renderElement.insertBefore(header.renderElement);
+                    } else {
+                        scrollDockItem.renderElement.insertBefore(item.renderElement);
+                    }
                 }
             }
         }
@@ -855,6 +866,10 @@ Ext.define('Ext.dataview.List', {
                     scrollDockItem.renderElement.insertAfter(item.renderElement);
                 }
             }
+        }
+
+        if (info.striped && index % 2 == 1) {
+            itemCls.push(info.stripeCls);
         }
 
         if (currentItemCls) {
@@ -1220,6 +1235,8 @@ Ext.define('Ext.dataview.List', {
             footerCls: baseCls + '-footer-wrap',
             firstCls: baseCls + '-item-first',
             lastCls: baseCls + '-item-last',
+            stripeCls: baseCls + '-item-odd',
+            striped: me.getStriped(),
             itemMap: me.getItemMap(),
             defaultItemHeight: me.getItemHeight()
         };

@@ -263,12 +263,14 @@ Ext.define('Ext.slider.Slider', {
     setIndexValue: function(index, value, animation) {
         var thumb = this.getThumb(index),
             values = this.getValue(),
+            minValue = this.getMinValue(),
             offsetValueRatio = this.offsetValueRatio,
+            increment = this.getIncrement(),
             draggable = thumb.getDraggable();
 
-        draggable.setOffset((value - this.getMinValue()) * offsetValueRatio, null, animation);
+        draggable.setOffset((value - minValue) * offsetValueRatio, null, animation);
 
-        values[index] = value;
+        values[index] = minValue + Math.round((draggable.offset.x / offsetValueRatio) / increment) * increment;
     },
 
     onThumbDragEnd: function(thumb, e) {

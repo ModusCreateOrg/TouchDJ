@@ -158,6 +158,7 @@ Ext.define('Ext.form.Panel', {
      * @param {Ext.form.Panel} this This FormPanel.
      * @param {Object} values A hash collection of the qualified form values about to be submitted.
      * @param {Object} options Submission options hash (only available when `standardSubmit` is `false`).
+     * @param {Ext.EventObject} e The event object if the form was submitted via a HTML5 form submit event.
      */
 
     /**
@@ -250,6 +251,11 @@ Ext.define('Ext.form.Panel', {
     getElementConfig: function() {
         var config = this.callParent();
         config.tag = "form";
+        config.children.push({
+            tag: 'input',
+            type: 'submit',
+            style: 'visibility: hidden;'
+        });
 
         return config;
     },
@@ -302,7 +308,7 @@ Ext.define('Ext.form.Panel', {
         if (e && !me.getStandardSubmit()) {
             e.stopEvent();
         } else {
-            this.submit();
+            this.submit(null, e);
         }
     },
 
@@ -389,7 +395,7 @@ Ext.define('Ext.form.Panel', {
      *
      * @return {Ext.data.Connection} The request object.
      */
-    submit: function(options) {
+    submit: function(options, e) {
         var me = this,
             form = me.element.dom || {},
             formValues;
@@ -408,7 +414,7 @@ Ext.define('Ext.form.Panel', {
 
         formValues = me.getValues(me.getStandardSubmit() || !options.submitDisabled);
 
-        return me.fireAction('beforesubmit', [me, formValues, options], 'doBeforeSubmit');
+        return me.fireAction('beforesubmit', [me, formValues, options, e], 'doBeforeSubmit');
     },
 
     doBeforeSubmit: function(me, formValues, options) {

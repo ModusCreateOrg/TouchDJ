@@ -122,7 +122,7 @@ Ext.define('Ext.plugin.PullRefresh', {
     },
 
     /**
-     * @event latestfeteched
+     * @event latestfetched
      * Fires when the latest data has been fetched
      */
 
@@ -159,6 +159,7 @@ Ext.define('Ext.plugin.PullRefresh', {
         }
 
         scroller = scrollable.getScroller();
+        scroller.setAutoRefresh(false);
 
         me.lastUpdated = new Date();
 
@@ -195,7 +196,7 @@ Ext.define('Ext.plugin.PullRefresh', {
             scope: me
         });
 
-		me.resetRefreshState();
+        me.resetRefreshState();
     },
 
     onScrollableChange: function() {
@@ -235,7 +236,7 @@ Ext.define('Ext.plugin.PullRefresh', {
             model: store.getModel(),
             limit: store.getPageSize(),
             action: 'read',
-			sorters: store.getSorters(),
+            sorters: store.getSorters(),
             filters: store.getRemoteFilter() ? store.getFilters() : []
         });
 
@@ -297,8 +298,10 @@ Ext.define('Ext.plugin.PullRefresh', {
             scope: me
         });
 
-        scroller.minPosition.y = 0;
-        scroller.scrollTo(null, 0, {duration: me.getSnappingAnimationDuration()});
+        if (scroller.position.y < 0) {
+            scroller.minPosition.y = 0;
+            scroller.scrollTo(null, 0, {duration: scroller.isTouching ? 0 : me.getSnappingAnimationDuration()});
+        }
     },
 
     onPainted: function() {

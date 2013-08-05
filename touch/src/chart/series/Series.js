@@ -1,6 +1,6 @@
 /**
  * Series is the abstract class containing the common logic to all chart series. Series includes
- * methods from Labels, Highlights, Tips and Callouts mixins. This class implements the logic of
+ * methods from Labels, Highlights, and Callouts mixins. This class implements the logic of
  * animating, hiding, showing all elements and returning the color of the series to be used as a legend item.
  *
  * ## Listeners
@@ -404,6 +404,7 @@ Ext.define('Ext.chart.series.Series', {
     coordinate: function (direction, directionOffset, directionCount) {
         var me = this,
             store = me.getStore(),
+            hidden = me.getHidden(),
             items = store.getData().items,
             axis = me['get' + direction + 'Axis'](),
             range = {min: Infinity, max: -Infinity},
@@ -412,11 +413,13 @@ Ext.define('Ext.chart.series.Series', {
             i, field, data, style = {},
             sprites = me.getSprites();
         if (sprites.length > 0) {
-            for (i = 0; i < fieldCategory.length; i++) {
-                field = fields[i];
-                data = me.coordinateData(items, field, axis);
-                me.getRangeOfData(data, range);
-                style['data' + fieldCategory[i]] = data;
+            if (!Ext.isBoolean(hidden) || !hidden) {
+                for (i = 0; i < fieldCategory.length; i++) {
+                    field = fields[i];
+                    data = me.coordinateData(items, field, axis);
+                    me.getRangeOfData(data, range);
+                    style['data' + fieldCategory[i]] = data;
+                }
             }
             me.dataRange[directionOffset] = range.min;
             me.dataRange[directionOffset + directionCount] = range.max;

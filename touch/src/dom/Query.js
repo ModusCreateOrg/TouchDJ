@@ -5,7 +5,9 @@
 
 /**
  * @class Ext.DomQuery
- * @alternateClassName Ext.dom.Query
+ * @alternateClassName Ext.core.DomQuery
+ * @extend Ext.dom.Query
+ * @singleton
  *
  * Provides functionality to select elements on the page based on a CSS selector. Delegates to
  * document.querySelectorAll. More information can be found at
@@ -63,6 +65,13 @@
  * * E{display*=none} CSS value "display" that contains the substring "none"
  * * E{display%=2} CSS value "display" that is evenly divisible by 2
  * * E{display!=none} CSS value "display" that does not equal "none"
+ */
+
+/**
+ * See {@link Ext.DomQuery} which is the singleton instance of this
+ * class.  You most likely don't need to instantiate Ext.dom.Query by
+ * yourself.
+ * @private
  */
 Ext.define('Ext.dom.Query', {
     /**
@@ -155,5 +164,11 @@ Ext.define('Ext.dom.Query', {
 }, function() {
     Ext.ns('Ext.core');
     Ext.core.DomQuery = Ext.DomQuery = new this();
+    /**
+     * Shorthand of {@link Ext.dom.Query#select}
+     * @member Ext
+     * @method query
+     * @inheritdoc Ext.dom.Query#select
+     */
     Ext.query = Ext.Function.alias(Ext.DomQuery, 'select');
 });

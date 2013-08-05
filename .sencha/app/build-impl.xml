@@ -80,8 +80,14 @@ this file in most cases.
     -->
     <target name="-before-init"/>
     <target name="-init">
-        <taskdef resource="com/sencha/ant/antlib.xml" classpath="${cmd.dir}/sencha.jar"/>
+        <taskdef resource="com/sencha/ant/antlib.xml" 
+                 classpath="${cmd.dir}/sencha.jar"
+                 loaderref="senchaloader"/>
         <x-sencha-init prefix=""/>
+        
+        <!-- default the build environment to production if it is unset by this point -->
+        <property name="args.environment" value="production"/>
+        <property name="CR" value="&#10;"/>
         
         <!-- Some operations require sencha.jar in the Ant classpath -->
         <x-extend-classpath>
@@ -90,115 +96,18 @@ this file in most cases.
 
         <x-verify-app-cmd-ver/>
         
-        <property name="args.archive" value=""/>
-        
-        <!--
-            These properties can be modified to change general build options
-            such as excluding files from the set.  The format expects newlines
-            for each argument, for example:
-            
-            build.operations.production=exclude\n \
-                                        -namespace\n \
-                                        Ext
-        -->
-        <property name="build.operations.production" value=""/>
-        <property name="build.operations.testing" value=""/>
-        <property name="build.operations.package" value=""/>
-        <property name="build.operations.native" value=""/>
-        
-        <!-- Specify preprocessor options -->
-        <property name="build.options.production.debug" value="debug:false"/>
-        <property name="build.options.production.logger" value="logger:no"/>
-        <property name="build.options.production.minVersion" value="minVersion:3"/>
-        <property name="build.options.production.product" value="product:touch"/>
-        
-        <property name="build.options.testing.debug" value="debug:false"/>
-        <property name="build.options.testing.logger" value="logger:no"/>
-        <property name="build.options.testing.minVersion" value="minVersion:3"/>
-        <property name="build.options.testing.product" value="product:touch"/>
-        
-        <property name="build.options.package.debug" value="debug:false"/>
-        <property name="build.options.package.logger" value="logger:no"/>
-        <property name="build.options.package.minVersion" value="minVersion:3"/>
-        <property name="build.options.package.product" value="product:touch"/>
-        
-        <property name="build.options.native.debug" value="debug:false"/>
-        <property name="build.options.native.logger" value="logger:no"/>
-        <property name="build.options.native.minVersion" value="minVersion:3"/>
-        <property name="build.options.native.product" value="product:touch"/>
-        
-        <property name="build.options.testing"
-                  value="${build.options.testing.debug},${build.options.testing.logger},${build.options.testing.minVersion},${build.options.testing.product}"/>
-
-        <property name="build.options.production"
-                  value="${build.options.production.debug},${build.options.production.logger},${build.options.production.minVersion},${build.options.production.product}"/>
-        
-        <property name="build.options.package"
-                  value="${build.options.package.debug},${build.options.package.logger},${build.options.package.minVersion},${build.options.package.product}"/>
-        
-        <property name="build.options.native"
-                  value="${build.options.native.debug},${build.options.native.logger},${build.options.native.minVersion},${build.options.native.product}"/>
-     
-        <!-- default the build environment to production if it is unset by this point -->
-        <property name="args.environment" value="production"/>
-        
-        <!-- initialize the build.dir property from the workspace config after we've loaded it -->
-        <property name="build.dir" location="${app.build.dir}"/>
-        
-        <!-- Specify the name for the individual resource dirs in the app -->
-        <property name="app.sass.name" value="sass"/>
-        
-        <!-- Specify the resources path in the app -->
-        <property name="app.resources.dir" location="${app.dir}/resources"/>
-        
-        <!-- Specify the sass path in the app -->
-        <property name="app.sass.dir" location="${app.resources.dir}/${app.sass.name}"/>
-        
-        <!-- Specify packaging info -->
-        <property name="app.packager.file" location="${app.dir}/packager.temp.json"/>
-        
-        <if>
-            <equals arg1="${args.environment}" arg2="production"/>
-            <then>
-                <property name="build.operations" value="${build.operations.production}"/>
-                <property name="build.options" value="${build.options.production}"/>
-            </then>
-            <else>
-                <if>
-                    <equals arg1="${args.environment}" arg2="testing"/>
-                    <then>
-                        <property name="build.operations" value="${build.operations.testing}"/>
-                        <property name="build.options" value="${build.options.testing}"/>
-                    </then>
-                    <else>
-                        <if>
-                            <equals arg1="${args.environment}" arg2="package"/>
-                            <then>
-                                <property name="build.operations" value="${build.operations.package}"/>
-                                <property name="build.options" value="${build.options.package}"/>
-                            </then>
-                            <else>
-                                <if>
-                                    <equals arg1="${args.environment}" arg2="native"/>
-                                    <then>
-                                        <property name="build.operations" value="${build.operations.native}"/>
-                                        <property name="build.options" value="${build.options.native}"/>
-                                    </then>
-                                    <else>
-                                        <fail>The Touch SDK currently supports 'production', 'testing', 'package', and 'native' builds not ${args.environment}</fail>
-                                    </else>
-                                </if>
-                            </else>
-                        </if>
-                    </else>
-                </if>
-            </else>
-        </if>
+        <x-load-properties file="${app.config.dir}/${args.environment}.properties" required="0"/>
+        <x-load-properties file="${app.config.dir}/build.properties" required="1"/>
     </target>
     <target name="-after-init"/>
+    
+    <target name="-before-init-default"/>
+    <target name="-init-default"/>
+    <target name="-after-init-default"/>
+    
     <target name="init"
-            depends="init-local,find-cmd,-before-init,-init,-after-init"/>
-
+            depends="init-local,find-cmd,-before-init,-init,-after-init,-before-init-default,-init-default,-after-init-default"/>
+    
     <!--
     Clean
     -->
@@ -327,22 +236,9 @@ this file in most cases.
 
     <target name=".help" depends="init"
             description="Provides help on the build script">
-        <local name="-alltargets"/>
-        <x-shell outputproperty="-alltargets">
-            ant -f ${ant.file} -p
-        </x-shell>
+        <x-get-project-targets property="help.message"/>
 
-        <!--
-        Remove the annoying "Default taret:.help" smashed on the end of the output.
-        -->
-        <script language="javascript">
-            var s = project.getProperty("-alltargets"),
-                n = s.indexOf('Default target:');
-            //self.log("all=" + n);
-            project.setProperty("-alltargets", s.substring(0, n));
-        </script>
-
-        <echo><![CDATA[${-alltargets}
+        <echo><![CDATA[${help.message}
 This is the main build script for your application.
 
 The following properties can be used to disable certain steps in the build

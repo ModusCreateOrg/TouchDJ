@@ -4,6 +4,10 @@
 Ext.define('Ext.scroll.indicator.Abstract', {
     extend: 'Ext.Component',
 
+    requires: [
+        'Ext.TaskQueue'
+    ],
+
     config: {
         baseCls: 'x-scroll-indicator',
 

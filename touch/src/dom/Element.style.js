@@ -797,6 +797,7 @@ Ext.dom.Element.addMembers({
                 this.setStyle(styles);
             }
         }
+        return this;
     },
 
     /**

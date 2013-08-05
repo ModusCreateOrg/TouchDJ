@@ -1048,7 +1048,8 @@ Ext.define('Ext.dataview.DataView', {
      */
     onStoreUpdate: function(store, record, newIndex, oldIndex) {
         var me = this,
-            container = me.container;
+            container = me.container,
+            item;
 
         oldIndex = (typeof oldIndex === 'undefined') ? newIndex : oldIndex;
 
@@ -1059,8 +1060,11 @@ Ext.define('Ext.dataview.DataView', {
             }
         }
         else {
-            // Bypassing setter because sometimes we pass the same record (different data)
-            container.updateListItem(record, me.getViewItems()[newIndex]);
+            item = me.getViewItems()[newIndex];
+            if (item) {
+                // Bypassing setter because sometimes we pass the same record (different data)
+                container.updateListItem(record, item);
+            }
         }
     }
     //<deprecated product=touch since=2.0>

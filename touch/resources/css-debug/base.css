@@ -2089,6 +2089,7 @@ audio {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "l";
 }
 
@@ -2101,6 +2102,7 @@ audio {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "`";
 }
 
@@ -2111,6 +2113,11 @@ audio {
 
 /* line 8, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/dataview/_DataView.scss */
 .x-dataview-nowrap .x-dataview-container {
+  white-space: nowrap !important;
+}
+
+/* line 14, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/dataview/_DataView.scss */
+.x-dataview-nowrap .x-container.x-dataview {
   white-space: nowrap !important;
 }
 
@@ -2368,9 +2375,9 @@ audio {
 /* line 40, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/form/_Panel.scss */
 .x-label-align-left,
 .x-label-align-right {
-  -webkit-box-orient: horizontal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-box-orient: horizontal !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
 }
 /* line 43, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/form/_Panel.scss */
 .x-label-align-left .x-component-outer,

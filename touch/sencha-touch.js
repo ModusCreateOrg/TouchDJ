@@ -16,7 +16,7 @@ requirements will be met: http://www.gnu.org/copyleft/gpl.html.
 If you are unsure which license is appropriate for your use, please contact the sales department
 at http://www.sencha.com/contact.
 
-Build date: 2013-04-11 12:51:10 (c47a7edc5889a0e78d6c752ebc21d8c668e120ac)
+Build date: 2013-05-21 08:48:57 (ed9733df54b93a8cc276c2207eacb9b215f77857)
 */
 //@tag foundation,core
 //@define Ext
@@ -4769,7 +4769,6 @@ var noArgs = [],
          * from the current method, for example: `this.callOverridden(arguments)`
          * @return {Object} Returns the result of calling the overridden method
          * @protected
-         * @deprecated Use callParent instead
          */
         callOverridden: function(args) {
             var method = this.callOverridden.caller;
@@ -7269,6 +7268,8 @@ var noArgs = [],
          *
          * @member Ext
          * @method widget
+         * @param {String} name
+         * @return {Object} instance
          */
         widget: function(name) {
             var args = arraySlice.call(arguments);
@@ -7281,6 +7282,9 @@ var noArgs = [],
          * Convenient shorthand, see {@link Ext.ClassManager#instantiateByAlias}.
          * @member Ext
          * @method createByAlias
+         * @param {String} alias
+         * @param {Mixed...} args Additional arguments after the alias will be passed to the class constructor.
+         * @return {Object} instance
          */
         createByAlias: alias(Manager, 'instantiateByAlias'),
 
@@ -7673,7 +7677,7 @@ var noArgs = [],
  * It has all the advantages combined from asynchronous and synchronous loading. The development flow is simple:
  *
  * ### Step 1: Start writing your application using synchronous approach. ###
- * Ext.Loader will automatically fetch all dependencies on demand as they're 
+ * Ext.Loader will automatically fetch all dependencies on demand as they're
  * needed during run-time. For example:
  *
  *     Ext.onReady(function(){
@@ -8044,7 +8048,7 @@ var noArgs = [],
 
         /**
          * Maintain the queue for all dependencies. Each item in the array is an object of the format:
-         * 
+         *
          *     {
          *         requires: [...], // The required classes for this queue item
          *         callback: function() { ... } // The function to execute when all classes specified in requires exist
@@ -8384,7 +8388,7 @@ var noArgs = [],
                         if (excluded[possibleClassName] !== true) {
                             references.push(possibleClassName);
 
-                            if (!Manager.isCreated(possibleClassName) && !included[possibleClassName]) {
+                            if (!Manager.isCreated(possibleClassName) && !included[possibleClassName]/* && !this.requiresMap.hasOwnProperty(possibleClassName)*/) {
                                 included[possibleClassName] = true;
                                 classNames.push(possibleClassName);
                             }
@@ -8860,7 +8864,7 @@ var noArgs = [],
         path = path + "../../../";
     }
     //</debug>
-    
+
 
     Loader.setConfig({
         enabled: true,
@@ -8869,7 +8873,7 @@ var noArgs = [],
             'Ext' : path + 'src'
         }
     });
-    
+
 })();
 
 //@tag dom,core
@@ -8922,7 +8926,7 @@ var noArgs = [],
  *
  * [getting_started]: #!/guide/getting_started
  */
-Ext.setVersion('touch', '2.2.0');
+Ext.setVersion('touch', '2.2.1');
 
 Ext.apply(Ext, {
     /**
@@ -8949,7 +8953,7 @@ Ext.apply(Ext, {
     },
 
     /**
-     * Generates unique ids. If the element already has an `id`, it is unchanged.
+     * Generates unique ids. If the element is passes and it already has an `id`, it is unchanged.
      * @param {Mixed} el (optional) The element to generate an id for.
      * @param {String} [prefix=ext-gen] (optional) The `id` prefix.
      * @return {String} The generated `id`.
@@ -8962,16 +8966,16 @@ Ext.apply(Ext, {
         el = Ext.getDom(el) || {};
 
         if (el === document || el === document.documentElement) {
-            el.id = 'ext-application';
+            el.id = 'ext-app';
         }
         else if (el === document.body) {
-            el.id = 'ext-viewport';
+            el.id = 'ext-body';
         }
         else if (el === window) {
             el.id = 'ext-window';
         }
 
-        el.id = el.id || ((prefix || 'ext-element-') + (++Ext.idSeed));
+        el.id = el.id || ((prefix || 'ext-') + (++Ext.idSeed));
 
         return el.id;
     },
@@ -10556,9 +10560,13 @@ Ext.define('Ext.env.Browser', {
 
         this.setFlag('Standalone', !!navigator.standalone);
 
+        this.setFlag('Ripple', !!document.getElementById("tinyhippos-injected") && !Ext.isEmpty(window.top.ripple));
+        this.setFlag('WebWorks', !!window.blackberry);
+
         if (typeof window.PhoneGap != 'undefined' || typeof window.Cordova != 'undefined' || typeof window.cordova != 'undefined') {
             isWebView = true;
             this.setFlag('PhoneGap');
+            this.setFlag('Cordova');
         }
         else if (!!window.isNK) {
             isWebView = true;
@@ -10796,12 +10804,7 @@ Ext.define('Ext.env.OS', {
                         version = new Ext.Version("2.3");
                     }
                     else if (match1 && match1 == "Silk/") {
-                        if (/Macintosh/i.test(userAgent)) {
-                            version = new Ext.Version("2.3");
-                        }
-                        else {
-                            version = new Ext.Version("4.0");
-                        }
+                        version = new Ext.Version("2.3");
                     }
                     else {
                         version = new Ext.Version(match[match.length - 1]);
@@ -10916,7 +10919,7 @@ Ext.define('Ext.env.OS', {
             // always set it to false when you are on a desktop
             Ext.browser.is.WebView = false;
         }
-        else if (osEnv.is.iPad || osEnv.is.RIMTablet || osEnv.is.Android3 || (osEnv.is.Android4 && userAgent.search(/mobile/i) == -1)) {
+        else if (osEnv.is.iPad || osEnv.is.RIMTablet || osEnv.is.Android3 || Ext.browser.is.Silk || (osEnv.is.Android4 && userAgent.search(/mobile/i) == -1)) {
             deviceType = 'Tablet';
         }
         else {
@@ -11025,6 +11028,16 @@ Ext.define('Ext.env.Feature', {
 
         if (typeof elementStyle[name] !== 'undefined'
             || typeof elementStyle[Ext.browser.getStylePrefix(name) + cName] !== 'undefined') {
+            return true;
+        }
+
+        return false;
+    },
+
+    isStyleSupportedWithoutPrefix: function(name, tag) {
+        var elementStyle = this.getTestElement(tag).style;
+
+        if (typeof elementStyle[name] !== 'undefined') {
             return true;
         }
 
@@ -11168,7 +11181,7 @@ Ext.define('Ext.env.Feature', {
         },
 
         Touch: function() {
-            return this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/) && !Ext.os.is.BlackBerry6);
+            return Ext.browser.is.Ripple || (this.isEventSupported('touchstart') && !(Ext.os && Ext.os.name.match(/Windows|MacOS|Linux/) && !Ext.os.is.BlackBerry6));
         },
 
         Pointer: function() {
@@ -11214,6 +11227,10 @@ Ext.define('Ext.env.Feature', {
 
         CssTransforms: function() {
             return this.isStyleSupported('transform');
+        },
+
+        CssTransformNoPrefix: function() {
+            return this.isStyleSupportedWithoutPrefix('transform');
         },
 
         Css3dTransforms: function() {
@@ -11267,7 +11284,9 @@ Ext.define('Ext.env.Feature', {
 
 /**
  * @class Ext.DomQuery
- * @alternateClassName Ext.dom.Query
+ * @alternateClassName Ext.core.DomQuery
+ * @extend Ext.dom.Query
+ * @singleton
  *
  * Provides functionality to select elements on the page based on a CSS selector. Delegates to
  * document.querySelectorAll. More information can be found at
@@ -11325,6 +11344,13 @@ Ext.define('Ext.env.Feature', {
  * * E{display*=none} CSS value "display" that contains the substring "none"
  * * E{display%=2} CSS value "display" that is evenly divisible by 2
  * * E{display!=none} CSS value "display" that does not equal "none"
+ */
+
+/**
+ * See {@link Ext.DomQuery} which is the singleton instance of this
+ * class.  You most likely don't need to instantiate Ext.dom.Query by
+ * yourself.
+ * @private
  */
 Ext.define('Ext.dom.Query', {
     /**
@@ -11417,6 +11443,12 @@ Ext.define('Ext.dom.Query', {
 }, function() {
     Ext.ns('Ext.core');
     Ext.core.DomQuery = Ext.DomQuery = new this();
+    /**
+     * Shorthand of {@link Ext.dom.Query#select}
+     * @member Ext
+     * @method query
+     * @inheritdoc Ext.dom.Query#select
+     */
     Ext.query = Ext.Function.alias(Ext.DomQuery, 'select');
 });
 
@@ -12442,8 +12474,8 @@ Ext.define('Ext.dom.Element', {
          * {@link Ext.dom.Element#fly}.
          *
          * Use this to make one-time references to DOM elements which are not going to be accessed again either by
-         * application code, or by Ext's classes. If accessing an element which will be processed regularly, then {@link
-         * Ext#get Ext.get} will be more appropriate to take advantage of the caching provided by the {@link Ext.dom.Element}
+         * application code, or by Ext's classes. If accessing an element which will be processed regularly, then {@link Ext#get Ext.get}
+         * will be more appropriate to take advantage of the caching provided by the {@link Ext.dom.Element}
          * class.
          *
          * @param {String/HTMLElement} element The DOM node or `id`.
@@ -14080,6 +14112,7 @@ Ext.dom.Element.addMembers({
                 this.setStyle(styles);
             }
         }
+        return this;
     },
 
     /**
@@ -14229,8 +14262,16 @@ Ext.dom.Element.addMembers({
         return this.findParentNode(simpleSelector, maxDepth, true);
     },
 
+    /**
+     * Selects elements based on the passed CSS selector to enable {@link Ext.Element Element} methods
+     * to be applied to many related elements in one statement through the returned. The element is the root of the search.
+     * {@link Ext.dom.CompositeElementLite CompositeElementLite} object.
+     * @param {String/HTMLElement[]} selector The CSS selector or an array of elements
+     * @param {Boolean} composite Return a CompositeElement as opposed to a CompositeElementLite. Defaults to false.
+     * @return {Ext.dom.CompositeElementLite/Ext.dom.CompositeElement}
+     */
     select: function(selector, composite) {
-        return Ext.dom.Element.select(selector, this.dom, composite);
+        return Ext.dom.Element.select(selector, composite, this.dom);
     },
 
     /**
@@ -14369,7 +14410,7 @@ Ext.define('Ext.dom.CompositeElementLite', {
     alternateClassName: ['Ext.CompositeElementLite', 'Ext.CompositeElement'],
 
                                   
-    
+
     // We use the @mixins tag above to document that CompositeElement has
     // all the same methods as Element, but the @mixins tag also pulls in
     // configs and properties which we don't want, so hide them explicitly:
@@ -14727,25 +14768,25 @@ Ext.define('Ext.dom.CompositeElementLite', {
 
     prototype.on = prototype.addListener;
 
-    if (Ext.DomQuery){
-        Element.selectorFunction = Ext.DomQuery.select;
-    }
+    Element.selectorFunction = Ext.DomQuery.select;
 
     /**
      * Selects elements based on the passed CSS selector to enable {@link Ext.Element Element} methods
      * to be applied to many related elements in one statement through the returned
      * {@link Ext.dom.CompositeElementLite CompositeElementLite} object.
      * @param {String/HTMLElement[]} selector The CSS selector or an array of elements
+     * @param {Boolean} composite Return a CompositeElement as opposed to a CompositeElementLite. Defaults to false.
      * @param {HTMLElement/String} [root] The root element of the query or id of the root
-     * @return {Ext.dom.CompositeElementLite}
+     * @return {Ext.dom.CompositeElementLite/Ext.dom.CompositeElement}
      * @member Ext.dom.Element
      * @method select
+     * @static
      */
-   Element.select = function(selector, root) {
+    Ext.dom.Element.select = function(selector, composite, root) {
         var elements;
 
         if (typeof selector == "string") {
-            elements = Element.selectorFunction(selector, root);
+            elements = Ext.dom.Element.selectorFunction(selector, root);
         }
         else if (selector.length !== undefined) {
             elements = selector;
@@ -14756,7 +14797,7 @@ Ext.define('Ext.dom.CompositeElementLite', {
             //</debug>
         }
 
-        return new Ext.CompositeElementLite(elements);
+        return (composite === true) ? new Ext.dom.CompositeElement(elements) : new Ext.dom.CompositeElementLite(elements);
     };
 
     /**
@@ -14798,9 +14839,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.data.Reader",
     "Ext.data.DataReader"
   ],
-  "Ext.Sheet": [
-    "widget.crosscut"
-  ],
+  "Ext.Sheet": [],
   "Ext.tab.Tab": [
     "Ext.Tab"
   ],
@@ -15237,8 +15276,8 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.fx.animation.WipeIn"
   ],
   "Ext.fx.layout.Card": [],
-  "Ext.TaskQueue": [],
   "Ext.Label": [],
+  "Ext.TaskQueue": [],
   "Ext.util.translatable.CssTransform": [],
   "Ext.viewport.Ios": [],
   "Ext.Spacer": [],
@@ -16021,10 +16060,10 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.fx.animation.Wipe": [],
   "Ext.fx.layout.Card": [],
-  "Ext.TaskQueue": [],
   "Ext.Label": [
     "widget.label"
   ],
+  "Ext.TaskQueue": [],
   "Ext.util.translatable.CssTransform": [],
   "Ext.viewport.Ios": [],
   "Ext.Spacer": [

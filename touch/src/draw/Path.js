@@ -330,6 +330,9 @@ Ext.define("Ext.draw.Path", {
      * @param height
      */
     rect: function (x, y, width, height) {
+        if (width == 0 || height == 0) {
+            return;
+        }
         var me = this;
         me.moveTo(x, y);
         me.lineTo(x + width, y);

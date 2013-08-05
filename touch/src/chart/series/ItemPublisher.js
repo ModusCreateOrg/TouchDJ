@@ -284,6 +284,9 @@ Ext.define('Ext.chart.series.ItemPublisher', {
                 var series = subscriber[i],
                     item = series.getItemForPoint(x, y);
                 if (item) {
+                    // TODO: Don't stop at the first item.
+                    // Depending on the selectionTolerance, there might be an item in another
+                    // series that's closer to the event location. See test case 3943c.
                     dispatcher.doDispatchEvent(targetType, '#' + series.getId(), eventName, [series, item, e]);
                     return;
                 }

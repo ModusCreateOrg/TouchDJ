@@ -84,13 +84,15 @@ Ext.define('Ext.field.Toggle', {
      *         xtype: 'togglefield',
      *         label: 'Event Example',
      *         listeners: {
-     *             change: function(field, newValue) {
+     *             change: function(field, slider, thumb, newValue, oldValue) {
      *                 console.log('Value of this toggle has changed:', (newValue) ? 'ON' : 'OFF');
      *             }
      *         }
      *     });
      *
-     * @param {Ext.field.Toggle} me
+     * @param {Ext.field.Toggle} this
+     * @param {Ext.slider.Toggle} Slider instance
+     * @param {Ext.slider.Thumb} Thumb instance
      * @param {Number} newValue the new value of this thumb
      * @param {Number} oldValue the old value of this thumb
      */

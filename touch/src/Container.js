@@ -125,17 +125,17 @@ Ext.define('Ext.Container', {
     /**
      * @event activate
      * Fires whenever item within the Container is activated.
-     * @param {Ext.Container} this The Container instance.
      * @param {Object} newActiveItem The new active item within the container.
+     * @param {Ext.Container} this The Container instance.
      * @param {Object} oldActiveItem The old active item within the container.
      */
 
     /**
      * @event deactivate
      * Fires whenever item within the Container is deactivated.
+     * @param {Object} oldActiveItem The old active item within the container.
      * @param {Ext.Container} this The Container instance.
      * @param {Object} newActiveItem The new active item within the container.
-     * @param {Object} oldActiveItem The old active item within the container.
      */
 
     eventedConfig: {
@@ -1244,11 +1244,13 @@ Ext.define('Ext.Container', {
             defaultAnimation = layout.getAnimation();
             if (defaultAnimation) {
                 defaultAnimation.disable();
-                animation.on('animationend', function() {
-                    defaultAnimation.enable();
-                    animation.destroy();
-                }, this);
             }
+            animation.on('animationend', function() {
+                if (defaultAnimation) {
+                    defaultAnimation.enable();
+                }
+                animation.destroy();
+            }, this);
         }
         return this.setActiveItem(activeItem);
     },

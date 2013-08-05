@@ -159,6 +159,13 @@ $toolbar-search-left-padding: 1.67em;
         }
     }
 
+    .x-slider-field,
+    .x-toggle-field {
+        .x-component-outer {
+            padding: 0em .3em;
+        }
+    }
+
     .x-field {
         width: 13em;
         margin: .5em;

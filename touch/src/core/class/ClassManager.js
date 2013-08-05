@@ -1260,6 +1260,8 @@
          *
          * @member Ext
          * @method widget
+         * @param {String} name
+         * @return {Object} instance
          */
         widget: function(name) {
             var args = arraySlice.call(arguments);
@@ -1272,6 +1274,9 @@
          * Convenient shorthand, see {@link Ext.ClassManager#instantiateByAlias}.
          * @member Ext
          * @method createByAlias
+         * @param {String} alias
+         * @param {Mixed...} args Additional arguments after the alias will be passed to the class constructor.
+         * @return {Object} instance
          */
         createByAlias: alias(Manager, 'instantiateByAlias'),
 

@@ -169,8 +169,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
 
         modeToggleButton: {
             cls: ['x-panzoom-toggle', 'x-zooming'],
-            iconCls: 'expand',
-            iconMask: true
+            iconCls: 'expand'
         },
 
         hideLabelInGesture: false //Ext.os.is.Android

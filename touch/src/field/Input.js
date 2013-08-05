@@ -241,12 +241,7 @@ Ext.define('Ext.field.Input', {
          * __This will be `undefined` until the Field has been visited.__ Compare {@link #originalValue}.
          * @accessor
          */
-        startValue: false,
-
-        /**
-         * True to hide sencha-styled clear button and set CSS native clear button (currently supports in IE10 only).
-         */
-        useNativeClearButton: false
+        startValue: false
     },
 
     /**
@@ -287,16 +282,16 @@ Ext.define('Ext.field.Input', {
             focus: 'onFocus',
             blur: 'onBlur',
             input: 'onInput',
-            paste: 'onPaste'
+            paste: 'onPaste',
+            tap: 'onInputTap'
         });
 
         me.mask.on({
-            tap: 'onMaskTap',
-            scope: me
+            scope: me,
+            tap: 'onMaskTap'
         });
 
         if (me.clearIcon) {
-            me.element.addCls((this.config.useNativeClearButton)?'native-clear-icon':'sencha-clear-icon');
             me.clearIcon.on({
                 tap: 'onClearIconTap',
                 touchstart: 'onClearIconPress',
@@ -309,7 +304,7 @@ Ext.define('Ext.field.Input', {
         if(Ext.browser.is.ie && Ext.browser.version.major >=10){
             me.input.on({
                 scope: me,
-                keypress    : 'onKeyPress'
+                keypress: 'onKeyPress'
             });
         }
     },
@@ -635,6 +630,20 @@ Ext.define('Ext.field.Input', {
     },
 
     // @private
+    onInputTap: function(e) {
+        this.fireAction('inputtap', [this, e], 'doInputTap');
+    },
+
+    // @private
+    doInputTap: function(me, e) {
+        if (me.getDisabled()) {
+            return false;
+        }
+
+        me.focus();
+    },
+
+    // @private
     onMaskTap: function(e) {
         this.fireAction('masktap', [this, e], 'doMaskTap');
     },
@@ -645,20 +654,19 @@ Ext.define('Ext.field.Input', {
             return false;
         }
 
-        me.maskCorrectionTimer = Ext.defer(me.showMask, 1000, me);
-        me.hideMask();
+        me.focus();
     },
 
     // @private
-    showMask: function(e) {
-        if (this.mask) {
+    showMask: function() {
+        if (this.getUseMask()) {
             this.mask.setStyle('display', 'block');
         }
     },
 
     // @private
-    hideMask: function(e) {
-        if (this.mask) {
+    hideMask: function() {
+        if (this.getUseMask()) {
             this.mask.setStyle('display', 'none');
         }
     },
@@ -715,17 +723,12 @@ Ext.define('Ext.field.Input', {
     doFocus: function(e) {
         var me = this;
 
-        if (me.mask) {
-            if (me.maskCorrectionTimer) {
-                clearTimeout(me.maskCorrectionTimer);
-            }
-            me.hideMask();
-        }
+        me.hideMask();
 
         if (!me.getIsFocused()) {
-            me.setIsFocused(true);
             me.setStartValue(me.getValue());
         }
+        me.setIsFocused(true);
     },
 
     onBlur: function(e) {
@@ -734,9 +737,11 @@ Ext.define('Ext.field.Input', {
 
     // @private
     doBlur: function(e) {
-        var me         = this,
-            value      = me.getValue(),
+        var me = this,
+            value = me.getValue(),
             startValue = me.getStartValue();
+
+        me.showMask();
 
         me.setIsFocused(false);
 
@@ -744,7 +749,6 @@ Ext.define('Ext.field.Input', {
             me.onChange(me, value, startValue);
         }
 
-        me.showMask();
     },
 
     // @private
@@ -815,6 +819,7 @@ Ext.define('Ext.field.Input', {
             }
         }, 10);
     },
+
     // Hack for IE10 mobile. Handle pressing 'enter' button and fire keyup event in this case.
     onKeyPress: function(e) {
         if(e.browserEvent.keyCode == 13){

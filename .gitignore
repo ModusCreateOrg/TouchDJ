@@ -6,3 +6,6 @@
 /tracks/*.mp3
 npm-debug.log
 nohup.out
+/build
+/archive
+.sencha_backup/

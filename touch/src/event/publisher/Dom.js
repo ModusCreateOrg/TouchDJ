@@ -14,8 +14,7 @@ Ext.define('Ext.event.publisher.Dom', {
 
     idOrClassSelectorRegex: /^([#|\.])([\w\-]+)$/,
 
-    handledEvents: ['click', 'focus', 'blur', 'paste', 'input', 'change',
-                    'mousemove', 'mousedown', 'mouseup', 'mouseover', 'mouseout',
+    handledEvents: ['focus', 'blur', 'paste', 'input', 'change',
                     'keyup', 'keydown', 'keypress', 'submit',
                     'transitionend', 'animationstart', 'animationend'],
 
@@ -420,7 +419,6 @@ Ext.define('Ext.event.publisher.Dom', {
 
     onEvent: function(e) {
         var eventName = this.eventNameMap[e.type];
-
         // Set the current frame start time to be the timestamp of the event.
         Ext.frameStartTime = e.timeStamp;
 

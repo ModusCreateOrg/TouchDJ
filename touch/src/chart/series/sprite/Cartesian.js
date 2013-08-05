@@ -54,6 +54,12 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                  */
                 labelOverflowPadding: 'number',
 
+                /**
+                 * @cfg {Number} [selectionTolerance=20]
+                 * The distance from the event position to the sprite's data points to trigger interactions (used for 'iteminfo', etc).
+                 */
+                selectionTolerance: 'number',
+
                 flipXY: 'bool',
                 renderer: 'default',
 
@@ -74,6 +80,7 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
                 dataMaxY: 1,
                 labels: null,
                 labelOverflowPadding: 10,
+                selectionTolerance: 20,
                 flipXY: false,
                 renderer: null,
                 transformFillStroke: false,
@@ -243,11 +250,12 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
             mat = sprite.attr.matrix,
             dataX = sprite.attr.dataX,
             dataY = sprite.attr.dataY,
+            selectionTolerance = sprite.attr.selectionTolerance,
             minX, minY, index = -1,
             imat = mat.clone().prependMatrix(this.surfaceMatrix).inverse(),
             center = imat.transformPoint([x, y]),
-            positionLB = imat.transformPoint([x - 22, y - 22]),
-            positionTR = imat.transformPoint([x + 22, y + 22]),
+            positionLB = imat.transformPoint([x - selectionTolerance, y - selectionTolerance]),
+            positionTR = imat.transformPoint([x + selectionTolerance, y + selectionTolerance]),
             left = Math.min(positionLB[0], positionTR[0]),
             right = Math.max(positionLB[0], positionTR[0]),
             top = Math.min(positionLB[1], positionTR[1]),
@@ -255,8 +263,7 @@ Ext.define("Ext.chart.series.sprite.Cartesian", {
 
         for (var i = 0; i < dataX.length; i++) {
             if (left < dataX[i] && dataX[i] < right && top < dataY[i] && dataY[i] < bottom) {
-                if (index === -1 || Math.abs(dataX[i] - center[0]) < minX &&
-                    Math.abs(dataY[i] - center[1]) < minY) {
+                if (index === -1 || (Math.abs(dataX[i] - center[0]) < minX) && (Math.abs(dataY[i] - center[1]) < minY)) {
                     minX = Math.abs(dataX[i] - center[0]);
                     minY = Math.abs(dataY[i] - center[1]);
                     index = i;

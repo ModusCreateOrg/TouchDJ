@@ -2093,6 +2093,7 @@ audio {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "l";
 }
 
@@ -2105,6 +2106,7 @@ audio {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "`";
 }
 
@@ -2115,6 +2117,11 @@ audio {
 
 /* line 8, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/dataview/_DataView.scss */
 .x-dataview-nowrap .x-dataview-container {
+  white-space: nowrap !important;
+}
+
+/* line 14, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/dataview/_DataView.scss */
+.x-dataview-nowrap .x-container.x-dataview {
   white-space: nowrap !important;
 }
 
@@ -2372,9 +2379,9 @@ audio {
 /* line 40, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/form/_Panel.scss */
 .x-label-align-left,
 .x-label-align-right {
-  -webkit-box-orient: horizontal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-box-orient: horizontal !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
 }
 /* line 43, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/base/src/form/_Panel.scss */
 .x-label-align-left .x-component-outer,
@@ -3440,11 +3447,9 @@ textarea {
   box-shadow: inset 0 -1px 0 0 #1b4e64;
 }
 
-/* line 114, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 113, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar-dark .x-button,
-.x-toolbar-dark .x-button-pressing,
-.x-toolbar-neutral .x-button,
-.x-toolbar-neutral .x-button-pressing {
+.x-toolbar-dark .x-button-pressing {
   border-color: #060606;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #010101), color-stop(100%, #060606));
   background: -webkit-linear-gradient(#010101, #060606);
@@ -3455,11 +3460,9 @@ textarea {
   -moz-box-shadow: 0 0 0 1px #393939;
   box-shadow: 0 0 0 1px #393939;
 }
-/* line 119, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 118, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar-dark .x-button:before,
-.x-toolbar-dark .x-button-pressing:before,
-.x-toolbar-neutral .x-button:before,
-.x-toolbar-neutral .x-button-pressing:before {
+.x-toolbar-dark .x-button-pressing:before {
   border-color: #010101;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #404040), color-stop(100%, #262626));
   background: -webkit-linear-gradient(#404040, #262626);
@@ -3470,15 +3473,36 @@ textarea {
   -moz-box-shadow: inset 0 1px 0 0 #404040;
   box-shadow: inset 0 1px 0 0 #404040;
 }
-/* line 126, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
-.x-toolbar-dark .x-button-label, .x-toolbar-dark .x-badge,
-.x-toolbar-neutral .x-button-label,
-.x-toolbar-neutral .x-badge {
+/* line 125, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-dark .x-button-label, .x-toolbar-dark .x-badge {
   color: #fff;
 }
-/* line 132, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 131, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar-dark .x-button-pressed:before,
-.x-toolbar-dark .x-button-pressing:before,
+.x-toolbar-dark .x-button-pressing:before {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #235f71), color-stop(100%, #0d6681));
+  background: -webkit-linear-gradient(#235f71, #0d6681);
+  background: -moz-linear-gradient(#235f71, #0d6681);
+  background: -o-linear-gradient(#235f71, #0d6681);
+  background: linear-gradient(#235f71, #0d6681);
+  -webkit-box-shadow: inset 0 -1px 0 0 #176982;
+  -moz-box-shadow: inset 0 -1px 0 0 #176982;
+  box-shadow: inset 0 -1px 0 0 #176982;
+}
+
+/* line 142, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-button-pressed .x-button-label, .x-toolbar-plain .x-button-pressed .x-badge,
+.x-toolbar-plain .x-button-pressing .x-button-label,
+.x-toolbar-plain .x-button-pressing .x-badge,
+.x-toolbar-neutral .x-button-pressed .x-button-label,
+.x-toolbar-neutral .x-button-pressed .x-badge,
+.x-toolbar-neutral .x-button-pressing .x-button-label,
+.x-toolbar-neutral .x-button-pressing .x-badge {
+  color: #fff;
+}
+/* line 146, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-button-pressed:before,
+.x-toolbar-plain .x-button-pressing:before,
 .x-toolbar-neutral .x-button-pressed:before,
 .x-toolbar-neutral .x-button-pressing:before {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #235f71), color-stop(100%, #0d6681));
@@ -3491,7 +3515,7 @@ textarea {
   box-shadow: inset 0 -1px 0 0 #176982;
 }
 
-/* line 142, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 156, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back,
 .x-toolbar .x-button-forward {
   height: 45px !important;
@@ -3512,13 +3536,13 @@ textarea {
   flex-direction: column;
   overflow: hidden;
 }
-/* line 153, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 167, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back .x-button-icon,
 .x-toolbar .x-button-forward .x-button-icon {
   margin: 0 auto;
   display: block;
 }
-/* line 157, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 171, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back .x-button-icon:before,
 .x-toolbar .x-button-forward .x-button-icon:before {
   font-family: "Chalkboard";
@@ -3526,7 +3550,7 @@ textarea {
   content: '<';
   padding-left: 5px;
 }
-/* line 165, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 179, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back .x-button-label, .x-toolbar .x-button-back .x-badge,
 .x-toolbar .x-button-forward .x-button-label,
 .x-toolbar .x-button-forward .x-badge {
@@ -3534,20 +3558,20 @@ textarea {
   font-size: 9px;
   line-height: 12px;
 }
-/* line 171, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 185, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back:before,
 .x-toolbar .x-button-forward:before {
   background: transparent;
   background-image: none;
 }
-/* line 177, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 191, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back.x-button-pressed, .x-toolbar .x-button-back.x-button-pressing,
 .x-toolbar .x-button-forward.x-button-pressed,
 .x-toolbar .x-button-forward.x-button-pressing {
   background: transparent;
   background-image: none;
 }
-/* line 181, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 195, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back.x-button-pressed:before, .x-toolbar .x-button-back.x-button-pressing:before,
 .x-toolbar .x-button-forward.x-button-pressed:before,
 .x-toolbar .x-button-forward.x-button-pressing:before {
@@ -3555,11 +3579,11 @@ textarea {
   background-image: none;
 }
 
-/* line 188, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 202, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back {
   padding-right: 15px;
 }
-/* line 190, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 205, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-back:before {
   -webkit-transform: rotate(6deg);
   -moz-transform: rotate(6deg);
@@ -3578,11 +3602,11 @@ textarea {
   border-radius: 0;
 }
 
-/* line 201, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 216, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-forward {
   padding-left: 15px;
 }
-/* line 203, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 219, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-toolbar .x-button-forward:before {
   -webkit-transform: rotate(-6deg);
   -moz-transform: rotate(-6deg);
@@ -3600,13 +3624,17 @@ textarea {
   -o-border-radius: 0;
   border-radius: 0;
 }
+/* line 230, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar .x-button-forward .x-button-icon:before {
+  content: '>';
+}
 
-/* line 216, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 238, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-hasbadge {
   overflow: visible;
 }
 
-/* line 220, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 242, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-badge {
   background-color: #0378B2;
   border: 1px solid #0796d0;
@@ -3621,12 +3649,12 @@ textarea {
   top: -2px;
 }
 
-/* line 232, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 254, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-button-icon {
   width: 1.5em;
   height: 1.5em;
 }
-/* line 236, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 258, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-button-icon:before {
   color: #fff;
   font-size: 20px;
@@ -3642,6 +3670,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "\005C";
 }
 
@@ -3654,6 +3683,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "R";
 }
 
@@ -3666,6 +3696,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "&";
 }
 
@@ -3678,6 +3709,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "}";
 }
 
@@ -3690,6 +3722,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "[";
 }
 
@@ -3702,6 +3735,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "]";
 }
 
@@ -3714,6 +3748,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "{";
 }
 
@@ -3726,6 +3761,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "W";
 }
 
@@ -3738,6 +3774,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "*";
 }
 
@@ -3750,6 +3787,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "I";
 }
 
@@ -3762,6 +3800,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "1";
 }
 
@@ -3774,6 +3813,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "R";
 }
 
@@ -3786,6 +3826,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "s";
 }
 
@@ -3798,6 +3839,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "y";
 }
 
@@ -3810,6 +3852,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "S";
 }
 
@@ -3822,6 +3865,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "#";
 }
 
@@ -3834,6 +3878,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "@";
 }
 
@@ -3846,6 +3891,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "@";
 }
 
@@ -3858,6 +3904,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "H";
 }
 
@@ -3870,6 +3917,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "I";
 }
 
@@ -3882,6 +3930,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "~";
 }
 
@@ -3894,6 +3943,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "S";
 }
 
@@ -3906,6 +3956,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "i";
 }
 
@@ -3918,6 +3969,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: ".";
 }
 
@@ -3930,6 +3982,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "t";
 }
 
@@ -3942,6 +3995,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "U";
 }
 
@@ -3954,6 +4008,7 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "g";
 }
 
@@ -3966,10 +4021,11 @@ textarea {
   bottom: 0;
   left: 0;
   text-align: center;
+  font-family: "Pictos";
   content: "l";
 }
 
-/* line 276, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 298, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-segmentedbutton {
   padding: 0 2px;
   height: 33px;
@@ -3980,7 +4036,7 @@ textarea {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 282, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 304, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-segmentedbutton .x-button {
   border: 0;
   height: 27px;
@@ -3994,11 +4050,11 @@ textarea {
   -o-border-radius: 0;
   border-radius: 0;
 }
-/* line 289, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 311, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-segmentedbutton .x-button:last-child {
   margin-right: 0;
 }
-/* line 293, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 315, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-segmentedbutton .x-button:before {
   top: 0;
   right: 0;
@@ -4011,7 +4067,7 @@ textarea {
   -o-border-radius: 0;
   border-radius: 0;
 }
-/* line 303, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 325, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-segmentedbutton .x-first:before {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -4020,7 +4076,7 @@ textarea {
   -webkit-border-bottom-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 308, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+/* line 330, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
 .x-segmentedbutton .x-last:before {
   -moz-border-radius-topright: 4px;
   -webkit-border-top-right-radius: 4px;
@@ -4030,9 +4086,8 @@ textarea {
   border-bottom-right-radius: 4px;
 }
 
-/* line 316, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
-.x-toolbar-dark .x-segmentedbutton,
-.x-toolbar-neutral .x-segmentedbutton {
+/* line 337, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-dark .x-segmentedbutton {
   border-color: #060606;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #010101), color-stop(100%, #060606));
   background: -webkit-linear-gradient(#010101, #060606);
@@ -4042,6 +4097,60 @@ textarea {
   -webkit-box-shadow: 0 0 0 1px #393939;
   -moz-box-shadow: 0 0 0 1px #393939;
   box-shadow: 0 0 0 1px #393939;
+}
+
+/* line 349, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-segmentedbutton .x-button-pressing,
+.x-toolbar-plain .x-segmentedbutton .x-button-pressed,
+.x-toolbar-neutral .x-segmentedbutton .x-button-pressing,
+.x-toolbar-neutral .x-segmentedbutton .x-button-pressed,
+.x-toolbar-light .x-segmentedbutton .x-button-pressing,
+.x-toolbar-light .x-segmentedbutton .x-button-pressed {
+  background-image: none;
+}
+
+/* line 356, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-light .x-segmentedbutton {
+  border-color: #0A5A88;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #05608f), color-stop(100%, #04557f));
+  background: -webkit-linear-gradient(#05608f, #04557f);
+  background: -moz-linear-gradient(#05608f, #04557f);
+  background: -o-linear-gradient(#05608f, #04557f);
+  background: linear-gradient(#05608f, #04557f);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 365, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-segmentedbutton,
+.x-toolbar-neutral .x-segmentedbutton {
+  border-color: #CECACE;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c6c3c6), color-stop(100%, #cccccc));
+  background: -webkit-linear-gradient(#c6c3c6, #cccccc);
+  background: -moz-linear-gradient(#c6c3c6, #cccccc);
+  background: -o-linear-gradient(#c6c3c6, #cccccc);
+  background: linear-gradient(#c6c3c6, #cccccc);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+/* line 370, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-segmentedbutton .x-button,
+.x-toolbar-neutral .x-segmentedbutton .x-button {
+  background-image: none;
+}
+/* line 375, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-button-icon:before,
+.x-toolbar-neutral .x-button-icon:before {
+  color: #000;
+}
+/* line 381, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Button.scss */
+.x-toolbar-plain .x-button-pressing .x-button-icon:before,
+.x-toolbar-plain .x-button-pressed .x-button-icon:before,
+.x-toolbar-neutral .x-button-pressing .x-button-icon:before,
+.x-toolbar-neutral .x-button-pressed .x-button-icon:before {
+  color: #fff;
 }
 
 /**
@@ -4174,9 +4283,17 @@ textarea {
   background: linear-gradient(85deg, #005f9a, #0aace5);
 }
 
-/* line 28, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Toolbar.scss */
+/* line 26, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Toolbar.scss */
 .x-toolbar-neutral,
-.x-tabbar-neutral,
+.x-tabbar-neutral {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f1f0f0), color-stop(100%, #d6d6d6));
+  background: -webkit-linear-gradient(#f1f0f0, #d6d6d6);
+  background: -moz-linear-gradient(#f1f0f0, #d6d6d6);
+  background: -o-linear-gradient(#f1f0f0, #d6d6d6);
+  background: linear-gradient(#f1f0f0, #d6d6d6);
+}
+
+/* line 31, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Toolbar.scss */
 .x-toolbar-dark,
 .x-tabbar-dark {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #323232), color-stop(100%, #252525));
@@ -4186,7 +4303,7 @@ textarea {
   background: linear-gradient(#323232, #252525);
 }
 
-/* line 32, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Toolbar.scss */
+/* line 35, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/_Toolbar.scss */
 .x-title {
   color: #fafafa;
   font-size: 18px;
@@ -4289,6 +4406,13 @@ textarea {
 /* line 65, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/dataview/_List.scss */
 .x-indexbar-pressed {
   background: rgba(150, 150, 150, 0.2);
+}
+
+/* line 71, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/dataview/_List.scss */
+.x-list-item-odd.x-list-item-tpl,
+.x-list-item-odd .x-dock-horizontal {
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 /**
@@ -4412,6 +4536,15 @@ textarea {
   font-style: italic;
 }
 
+/* line 64, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/field/_Field.scss */
+.x-item-disabled input {
+  color: #888;
+}
+/* line 68, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/field/_Field.scss */
+.x-item-disabled .x-form-label {
+  color: #bbb;
+}
+
 /**
  * @class Ext.field.Checkbox
  */
@@ -4491,6 +4624,18 @@ textarea {
   content: '3';
 }
 
+/* line 51, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/field/_Checkbox.scss */
+.x-item-disabled.x-field-checkbox .x-input-checkbox:checked ~ .x-field-mask:after {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bfd7e3), color-stop(100%, #85b3c9));
+  background: -webkit-linear-gradient(#bfd7e3, #85b3c9);
+  background: -moz-linear-gradient(#bfd7e3, #85b3c9);
+  background: -o-linear-gradient(#bfd7e3, #85b3c9);
+  background: linear-gradient(#bfd7e3, #85b3c9);
+  -webkit-box-shadow: inset 0 1px 0 0 #aac5d3;
+  -moz-box-shadow: inset 0 1px 0 0 #aac5d3;
+  box-shadow: inset 0 1px 0 0 #aac5d3;
+}
+
 /**
  * @class Ext.field.Radio
  */
@@ -4537,6 +4682,18 @@ textarea {
   font-size: 26px;
   line-height: 13px;
   content: '•';
+}
+
+/* line 35, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/field/_Radio.scss */
+.x-item-disabled.x-field-radio .x-input-radio:checked ~ .x-field-mask:after {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bfd7e3), color-stop(100%, #85b3c9));
+  background: -webkit-linear-gradient(#bfd7e3, #85b3c9);
+  background: -moz-linear-gradient(#bfd7e3, #85b3c9);
+  background: -o-linear-gradient(#bfd7e3, #85b3c9);
+  background: linear-gradient(#bfd7e3, #85b3c9);
+  -webkit-box-shadow: inset 0 1px 0 0 #aac5d3;
+  -moz-box-shadow: inset 0 1px 0 0 #aac5d3;
+  box-shadow: inset 0 1px 0 0 #aac5d3;
 }
 
 /* line 1, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/field/_Spinner.scss */
@@ -4615,26 +4772,26 @@ textarea {
 /* line 1, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
 .x-slider {
   height: 40px;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
 }
-/* line 4, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+/* line 7, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
 .x-slider:before {
   top: 16px;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3595cc), color-stop(100%, #0678c4));
-  background: -webkit-linear-gradient(#3595cc, #0678c4);
-  background: -moz-linear-gradient(#3595cc, #0678c4);
-  background: -o-linear-gradient(#3595cc, #0678c4);
-  background: linear-gradient(#3595cc, #0678c4);
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 0 0 1px #cecfce;
-  -moz-box-shadow: 0 0 0 1px #cecfce;
-  box-shadow: 0 0 0 1px #cecfce;
-  border: 1px solid #3177a4;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e1e1e1));
+  background: -webkit-linear-gradient(#ffffff, #e1e1e1);
+  background: -moz-linear-gradient(#ffffff, #e1e1e1);
+  background: -o-linear-gradient(#ffffff, #e1e1e1);
+  background: linear-gradient(#ffffff, #e1e1e1);
+  border: 1px solid #cccccc;
+  margin: 0;
+  box-shadow: none;
 }
-/* line 12, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+/* line 15, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
 .x-slider.x-item-disabled:before {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e1e1e1));
   background: -webkit-linear-gradient(#ffffff, #e1e1e1);
@@ -4644,21 +4801,53 @@ textarea {
   border-color: #ddd;
   box-shadow: none;
 }
-/* line 18, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+/* line 21, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
 .x-slider .x-thumb {
-  margin-top: 5px;
+  margin-top: .25em;
 }
 
-/* line 23, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+/* line 27, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+.x-slider.x-item-disabled .x-thumb:before {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e1e1e1), color-stop(100%, #d1d1d1));
+  background: -webkit-linear-gradient(#e1e1e1, #d1d1d1);
+  background: -moz-linear-gradient(#e1e1e1, #d1d1d1);
+  background: -o-linear-gradient(#e1e1e1, #d1d1d1);
+  background: linear-gradient(#e1e1e1, #d1d1d1);
+  border-color: #ddd;
+  box-shadow: none;
+}
+
+/* line 36, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+.x-toggle .x-thumb:before,
+.x-slider-multiple .x-thumb:before {
+  border: 0;
+  background: transparent;
+  background-image: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 44, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
 .x-thumb {
+  width: 2em;
+  height: 2em;
+  background: transparent none;
+  border: 0;
+}
+/* line 51, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+.x-thumb:after {
+  top: 0 !important;
+  left: 0 !important;
+  height: 2em !important;
+  width: 2em !important;
   border: 1px solid #bbbbbb;
-  width: 30px;
-  height: 30px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  border-radius: 15px;
+  content: '';
+  position: absolute;
+  width: 1.85em;
+  height: 1.85em;
+  top: 0.1em;
+  left: 0.1em;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e4e2e4));
   background: -webkit-linear-gradient(#ffffff, #e4e2e4);
   background: -moz-linear-gradient(#ffffff, #e4e2e4);
@@ -4667,9 +4856,33 @@ textarea {
   -webkit-box-shadow: inset 0 0 0 1px white;
   -moz-box-shadow: inset 0 0 0 1px white;
   box-shadow: inset 0 0 0 1px white;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
 }
-/* line 31, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
-.x-thumb.x-item-disabled {
+/* line 63, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+.x-thumb:before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  width: 5000px;
+  right: 1em;
+  height: 8px;
+  border: 1px solid #3177a4;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3595cc), color-stop(100%, #0678c4));
+  background: -webkit-linear-gradient(#3595cc, #0678c4);
+  background: -moz-linear-gradient(#3595cc, #0678c4);
+  background: -o-linear-gradient(#3595cc, #0678c4);
+  background: linear-gradient(#3595cc, #0678c4);
+  -webkit-box-shadow: 0 0 0 1px #cecfce;
+  -moz-box-shadow: 0 0 0 1px #cecfce;
+  box-shadow: 0 0 0 1px #cecfce;
+}
+
+/* line 77, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+.x-thumb.x-item-disabled:after {
   border-color: #ccc;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
   background: -webkit-linear-gradient(#ffffff, #eeeeee);
@@ -4678,18 +4891,16 @@ textarea {
   background: linear-gradient(#ffffff, #eeeeee);
 }
 
-/* line 37, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+/* line 84, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
 .x-toggle {
-  height: 34px;
-  -webkit-border-radius: 17px;
-  -moz-border-radius: 17px;
-  -ms-border-radius: 17px;
-  -o-border-radius: 17px;
-  border-radius: 17px;
+  height: 2.15em;
+  -webkit-border-radius: 1.05em;
+  -moz-border-radius: 1.05em;
+  -ms-border-radius: 1.05em;
+  -o-border-radius: 1.05em;
+  border-radius: 1.05em;
   border: 1px solid #9d9d9d;
   width: 90px;
-  padding: 0;
-  margin: 5px;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dbdbdb), color-stop(100%, #e2e2e2));
   background: -webkit-linear-gradient(#dbdbdb, #e2e2e2);
   background: -moz-linear-gradient(#dbdbdb, #e2e2e2);
@@ -4699,13 +4910,9 @@ textarea {
   -moz-box-shadow: inset 0 2px 2px silver;
   box-shadow: inset 0 2px 2px silver;
 }
-/* line 47, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
-.x-toggle .x-thumb {
-  margin: 1px;
-}
 
-/* line 52, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
-.x-toggle-on .x-thumb {
+/* line 94, /Users/jamieavins/git/SDK/touch/resources/themes/stylesheets/sencha-touch/bb10/src/slider/_Slider.scss */
+.x-toggle-on {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4b9ccc), color-stop(100%, #0076b9));
   background: -webkit-linear-gradient(#4b9ccc, #0076b9);
   background: -moz-linear-gradient(#4b9ccc, #0076b9);

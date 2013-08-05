@@ -26,6 +26,14 @@
         }
     }
 
+    .x-list-item-odd {
+        &.x-list-item-tpl,
+        .x-dock-horizontal {
+            background-color: darken($base-color, 5%);
+            border-bottom: 1px solid darken($base-color, 5%);
+        }
+    }
+
     .x-list-header {
         background-color: $background-color;
         border: 0;

@@ -59,3 +59,13 @@
         font-style:italic;
     }
 }
+
+.x-item-disabled {
+    input {
+        color: #888;
+    }
+
+    .x-form-label {
+        color: #bbb;
+    }
+}

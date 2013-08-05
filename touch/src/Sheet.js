@@ -8,7 +8,6 @@ Ext.define('Ext.Sheet', {
     extend: 'Ext.Panel',
 
     xtype: 'sheet',
-    alternateClassName: ['widget.crosscut'],
 
     requires: ['Ext.Button', 'Ext.fx.Animation'],
 

@@ -262,9 +262,13 @@ Ext.define('Ext.env.Browser', {
 
         this.setFlag('Standalone', !!navigator.standalone);
 
+        this.setFlag('Ripple', !!document.getElementById("tinyhippos-injected") && !Ext.isEmpty(window.top.ripple));
+        this.setFlag('WebWorks', !!window.blackberry);
+
         if (typeof window.PhoneGap != 'undefined' || typeof window.Cordova != 'undefined' || typeof window.cordova != 'undefined') {
             isWebView = true;
             this.setFlag('PhoneGap');
+            this.setFlag('Cordova');
         }
         else if (!!window.isNK) {
             isWebView = true;

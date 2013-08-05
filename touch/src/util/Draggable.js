@@ -1,5 +1,5 @@
 /**
- * A core util class to bring Draggable behavior to any DOM element
+ * A core util class to bring Draggable behavior to a Component
  */
 Ext.define('Ext.util.Draggable', {
     isDraggable: true,

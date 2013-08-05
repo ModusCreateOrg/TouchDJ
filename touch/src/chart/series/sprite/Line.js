@@ -208,11 +208,61 @@ Ext.define("Ext.chart.series.sprite.Line", {
         }
     },
 
+    drawLabel: function (text, dataX, dataY, labelId, region) {
+        var me = this,
+            attr = me.attr,
+            labelCfg = me.labelCfg || (me.labelCfg = {}),
+            surfaceMatrix = me.surfaceMatrix,
+            labelX, labelY,
+            labelOverflowPadding = attr.labelOverflowPadding,
+            halfWidth, halfHeight,
+            labelBox;
+
+        labelCfg.text = text;
+
+        labelBox = this.getMarkerBBox('labels', labelId, true);
+        if (!labelBox) {
+            me.putMarker('labels', labelCfg, labelId);
+            labelBox = this.getMarkerBBox('labels', labelId, true);
+        }
+
+        if (attr.flipXY) {
+            labelCfg.rotationRads = Math.PI * 0.5;
+        } else {
+            labelCfg.rotationRads = 0;
+        }
+
+        halfWidth = labelBox.width / 2;
+        halfHeight = labelBox.height / 2;
+
+        labelX = dataX;
+        labelY = dataY + halfHeight + labelOverflowPadding;
+
+        if (labelX <= region[0] + halfWidth) {
+            labelX = region[0] + halfWidth;
+        } else if (labelX >= region[2] - halfWidth) {
+            labelX = region[2] - halfWidth;
+        } 
+
+        if (labelY <= region[1] + halfHeight) {
+            labelY = region[1] + halfHeight;
+        } else if (labelY >= region[3] - halfHeight) {
+            labelY = region[3] - halfHeight;
+        }
+
+        labelCfg.x = surfaceMatrix.x(labelX, labelY);
+        labelCfg.y = surfaceMatrix.y(labelX, labelY);
+
+        me.putMarker('labels', labelCfg, labelId);
+    },
+
     renderAggregates: function (aggregates, start, end, surface, ctx, clip, region) {
         var me = this,
             attr = me.attr,
             dataX = attr.dataX,
             dataY = attr.dataY,
+            labels = attr.labels,
+            drawLabels = labels && !!me.getBoundMarker("labels"),
             matrix = attr.matrix,
             surfaceMatrix = surface.matrix,
             pixel = surface.devicePixelRatio,
@@ -263,6 +313,10 @@ Ext.define("Ext.chart.series.sprite.Line", {
                 markerCfg.translationX = surfaceMatrix.x(x, y);
                 markerCfg.translationY = surfaceMatrix.y(x, y);
                 me.putMarker("markers", markerCfg, index, !attr.renderer);
+
+                if (drawLabels && labels[index]) {
+                    me.drawLabel(labels[index], x, y, index, region);
+                }
             }
             me.drawStroke(surface, ctx, list, region[1] - pixel);
             if (!attr.renderer) {
