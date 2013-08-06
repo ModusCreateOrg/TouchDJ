@@ -26,6 +26,7 @@ Ext.application({
     requires    : [
         'Ext.MessageBox'
     ],
+    
     controllers : [
         'Main',
         'Deck',
