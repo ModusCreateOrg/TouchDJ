@@ -1,3 +1,12 @@
+![No longer maintained](https://img.shields.io/badge/Maintenance-OFF-red.svg)
+### [DEPRECATED] This repository is no longer maintained
+> While this project is fully functional, the dependencies are no longer up to date. You are still welcome to explore, learn, and use the code provided here.
+>
+> We have many more inspiring projects for you at [Modus Labs](https://labs.moduscreate.com?utm_source=github&utm_medium=deprecated_repo).
+
+[![Modus Labs](https://res.cloudinary.com/modus-labs/image/upload/h_80/v1531492623/labs/logo-black.png)](https://labs.moduscreate.com?utm_source=github&utm_medium=deprecated_repo)
+
+
 # Touch DJ
 Touch DJ is a Mobile DJ App targeted for tablet resolutions implemented in Sencha Touch 2.2.
 
